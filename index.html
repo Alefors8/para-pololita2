@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Yerimar</title>
+    <style>
+        body {
+            background-color: #ffeef2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            overflow: hidden;
+        }
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            z-index: 10;
+        }
+        h1 { color: #d63384; font-size: 2.5rem; }
+        .corazon { color: #ff4d4d; font-size: 50px; margin-bottom: 10px; }
+        
+        button {
+            padding: 10px 25px;
+            font-size: 1.2rem;
+            margin: 10px;
+            cursor: pointer;
+            border-radius: 10px;
+            border: none;
+            transition: 0.3s;
+        }
+        #btnSi { background-color: #ff4d4d; color: white; }
+        #btnNo { background-color: #ccc; color: #333; }
+
+        /* Estilo para los corazones flotantes */
+        .corazon-volador {
+            position: absolute;
+            color: #ff4d4d;
+            font-size: 25px;
+            animation: flotar 3s linear forwards;
+        }
+        @keyframes flotar {
+            from { transform: translateY(100vh) rotate(0deg); opacity: 1; }
+            to { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="main-container">
+        <div class="corazon">❤</div>
+        <h1 id="texto">Yerimar, te amu</h1>
+        <p id="subtexto">¿Me perdonas?</p>
+        
+        <div id="botones">
+            <button id="btnSi" onclick="aceptado()">Sí</button>
+            <button id="btnNo" onclick="denegado()">No</button>
+        </div>
+    </div>
+
+    <script>
+        function denegado() {
+            alert("Error: Vuelve a intentarlo ❌");
+        }
+
+        function aceptado() {
+            // Cambiamos el texto
+            document.getElementById('texto').innerHTML = "¡Nos vamos a casar! 💍";
+            document.getElementById('subtexto').innerHTML = "Eres lo mejor que me ha pasado.";
+            
+            // Quitamos los botones
+            document.getElementById('botones').style.display = 'none';
+
+            // Lluvia de corazones
+            for (let i = 0; i < 50; i++) {
+                crearCorazon();
+            }
+        }
+
+        function crearCorazon() {
+            const corazon = document.createElement('div');
+            corazon.innerHTML = "❤";
+            corazon.classList.add('corazon-volador');
+            corazon.style.left = Math.random() * 100 + "vw";
+            corazon.style.animationDuration = (Math.random() * 2 + 3) + "s";
+            document.body.appendChild(corazon);
+        }
+    </script>
+
+</body>
+</html>
